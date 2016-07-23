@@ -1,4 +1,5 @@
-<lensdatabase>
+<!DOCTYPE lensdatabase SYSTEM "lensfun-database.dtd">
+<lensdatabase version="2">
 
     <camera>
         <maker>Canon</maker>
@@ -23,6 +24,7 @@
         <model lang="de">festes Objektiv</model>
         <mount>canonIxus80IS</mount>
         <cropfactor>6.02</cropfactor>
+        <aspect-ratio>4:3</aspect-ratio>
         <calibration>
             <distortion model="ptlens" focal="6.2" a="0.021" b="-0.073" c="0.044" />
             <distortion model="ptlens" focal="7.2" a="-0.005" b="0.022" c="-0.066" />
