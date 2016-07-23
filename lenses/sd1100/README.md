@@ -47,7 +47,7 @@ For the XML, I copied the IXUS 80 verbatim (both camera and lens), then changed 
 
 ## Crop factor
 
-The IXUS 80 calibration has the crop factor at 6.1 for the camera and 5.9 for the lens (based perhaps on full area vs. JPEG area?)
+The IXUS 80 calibration has the crop factor at 6.1 for the camera and 5.9 for the lens (based perhaps on full area vs. JPEG area?) Torsten says these really should be the same.
 
 JPG is 3264x2448 (matches EXIF DefaultCropSize); DNG is 3298x2470 (matches ActiveArea). EXIF ImageWidth x ImageLength is 3336 x 2480
 
@@ -60,7 +60,7 @@ EXIF FocalLength  Exif FocalLengthIn35mmFilm  Factor
 14.3              87.0                        6.08
 18.6              114.0                       6.13
 
-A standard 1/2.5" sensor is 6.02 digicamdb claims 6.02, but withslightly different dimensions than 1/2.5".
+A standard 1/2.5" sensor is 6.02 digicamdb claims 6.02, but with slightly different dimensions than 1/2.5".
 
 ## Distortion
 I took a set of distortion images and calibrated them with hugin. The edges used were the top of the building and the line of the siding closest to one-third of the way from the top; as far as I could tell, there weren't discontinuities at the joints. The dist_compar.py script has the resulting calibrations and the old ones; it makes comparison plots. The old calibrations seem a bit much. Example images are provided for: OOC JPG, uncorrected from the RAW, and corrected from the RAW with both old and new images. It appears the OOC JPG is completely uncorrected. Note these images were not used for calibration.
