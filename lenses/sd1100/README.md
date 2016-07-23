@@ -60,7 +60,7 @@ EXIF FocalLength  Exif FocalLengthIn35mmFilm  Factor
 14.3              87.0                        6.08
 18.6              114.0                       6.13
 
-A standard 1/2.5" sensor is 6.02 digicamdb claims 6.02, but with slightly different dimensions than 1/2.5".
+A standard 1/2.5" sensor is 6.02. digicamdb claims 6.02 for SD1100, but with slightly different dimensions than 1/2.5". I used 6.02 for the distortion calibration via hugin.
 
 ## Distortion
 I took a set of distortion images and calibrated them with hugin. The edges used were the top of the building and the line of the siding closest to one-third of the way from the top; as far as I could tell, there weren't discontinuities at the joints. The dist_compar.py script has the resulting calibrations and the old ones; it makes comparison plots. The old calibrations seem a bit much. Example images are provided for: OOC JPG, uncorrected from the RAW, and corrected from the RAW with both old and new images. It appears the OOC JPG is completely uncorrected. Note these images were not used for calibration.
