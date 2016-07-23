@@ -12,7 +12,7 @@
     <camera>
         <maker>Canon</maker>
         <model>Canon PowerShot SD1100 IS</model>
-        <model lang="en">SD1100 IS</model>
+        <model lang="en">PowerShot SD1100 IS</model>
         <mount>canonIxus80IS</mount>
         <cropfactor>6.02</cropfactor>
     </camera>
