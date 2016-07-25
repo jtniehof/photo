@@ -1,8 +1,8 @@
 Canon PowerShot SD1100 IS: Canon, canonSD100IS, 6.02
-distortion(6.2mm)  =  0.021, -0.073,  0.044
-distortion(7.2mm)  = -0.005,  0.022, -0.066
-distortion(8.3mm)  =  0.008, -0.031,  0.011
-distortion(9.7mm)  =  0.001, -0.048,  0.055
-distortion(11.6mm) =  0.014, -0.065,  0.085  
-distortion(14.3mm) =  0.001, -0.037,  0.045
-distortion(18.6mm) = -0.004,  0.012, -0.005
+distortion(6.2mm)  =  0.01576, -0.05512,  0.01877
+distortion(7.2mm)  =  0.01258, -0.04518,  0.01608
+distortion(8.3mm)  =  0.00121, -0.01475, -0.0003
+distortion(9.7mm)  = -0.00339,  0.00445, -0.0226
+distortion(11.6mm) = -0.00224,  0.00479, -0.01497]
+distortion(14.3mm) =  0.00113, -0.00504, -0.0008
+distortion(18.6mm) =  0.00169, -0.00608, 0.00632
