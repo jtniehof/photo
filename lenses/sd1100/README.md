@@ -49,7 +49,7 @@ For the XML, I copied the IXUS 80 verbatim (both camera and lens), then changed 
 
 The IXUS 80 calibration has the crop factor at 6.1 for the camera and 5.9 for the lens (based perhaps on full area vs. JPEG area?) Torsten says these really should be the same.
 
-JPG is 3264x2448 (matches EXIF DefaultCropSize); DNG is 3298x2470 (matches ActiveArea). EXIF ImageWidth x ImageLength is 3336 x 2480
+JPG is 3264x2448 (matches EXIF DefaultCropSize); DNG is 3298x2470 (matches ActiveArea). EXIF ImageWidth x ImageLength is 3336 x 2480. 6.02 / 5.9 is roughly the ratio of ImageWidth to DefaultCropSize, so maybe that's a clue...
 
 EXIF FocalLength  Exif FocalLengthIn35mmFilm  Factor
 6.2               38.0                        6.13
