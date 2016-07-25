@@ -63,6 +63,28 @@ EXIF FocalLength  Exif FocalLengthIn35mmFilm  Factor
 A standard 1/2.5" sensor is 6.02. digicamdb claims 6.02 for SD1100, but with slightly different dimensions than 1/2.5". I used 6.02 for the distortion calibration via hugin.
 
 ## Distortion
-I took a set of distortion images and calibrated them with hugin. The edges used were the top of the building and the line of the siding closest to one-third of the way from the top; as far as I could tell, there weren't discontinuities at the joints. The dist_compar.py script has the resulting calibrations and the old ones; it makes comparison plots. The old calibrations seem a bit much. Example images are provided for: OOC JPG, uncorrected from the RAW, and corrected from the RAW with both old and new values (for the new values, there are both with and without TCA/vignetting). It appears the OOC JPG is completely uncorrected. Note the comparison images were not used for calibration.
+I took a set of distortion images (raws in dng/distortion) and calibrated them with hugin. The edges used were the top of the building and the line of the siding closest to one-third of the way from the top; as far as I could tell, there weren't discontinuities at the joints. There's a tutorial similar to Torsten's technique with a newer version of hugin at <http://hugin.sourceforge.net/tutorials/calibration/en.shtml>
 
 I had to edit the hugin source to get rid of the extra lines, per Torsten's email at <https://groups.google.com/forum/#!topic/hugin-ptx/isjUEIzVsXU>.
+
+Hugin includes an automatic calibration tool documented at <http://wiki.panotools.org/Calibrate_lens_gui>. With a bit of parameter tweaking and taking out obviously bad lines, this seems to do a very good job.
+
+dist_compare/parameters has a script, dist_compare.py, that compares all the calibrations. The output plots are also in that directory. The various parameter sets are:
+
+new: taken by me using Torsten's procedure, two horizontal lines one close to the top and one about one-third of the way down, roughly 15-20 pairs of control points per line.
+
+newer: also manual, but after processing the tiffs in GIMP to pull in the white and black points, improving contrast. I used three lines with 40-50 control point pairs each.
+
+old: the values from the current database.
+
+auto: using the automatic calibration tool on the tiffs directly from calibrate.py, using default parameters
+
+tuned: automatic calibration tool, playing with the detection parameters.
+
+tuned_contrast: automatic calibration tool, tiffs stretched as above, tweaking detection parameters to maximize number of good lines and removing some erroneous detections. These seemed to be the best results and are in the final sd1100.xml, plus the comparison images described below.
+
+The old calibrations seem a bit much. Example images are provided in distortion_compare for: OOC JPG (ooc_jpg), uncorrected from the RAW (uncorrected), and corrected from the RAW with both old (old_distortion) and new values (for the new values, there are both with TCA/vignetting, new_all, and without, new_distortion). It appears the OOC JPG is completely uncorrected. Note the comparison images were not used for calibration (those are in dng/distortion).
+
+The automatic calibration tool seems pretty effective; and since it's quick it's probably worth taking a few images at each focal length to get hopefully reproducible parameters. The manual method seems to go weird at the center of the image (R to 0), probably from a lack of sampling in that region.
+
+calibrate.py creates the distortion tiffs using ``dcraw -T -t 0 -w infile.dng`. It may be worth tweaking the white and black levels for your specific distortion image with the `-W`, `-S`, and `-k` options.
