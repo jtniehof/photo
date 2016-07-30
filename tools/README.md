@@ -21,4 +21,7 @@ Combine multiple bad pixel lists with `cat deadpixels1 deadpixels2 | sort -k 1g 
 Runs all gnuplot files (e.g. from the vignetting step of `calibrate.py`) in the current directory and produces png output.
 
 ## tca_compare.py
-Plots transverse chromatic aberration values across focal length and multiple images at one focal length; prints the mean values for each focal length. Run after Torsten's `calibrate.py` in the directory with the `.tca` files. 
+Plots transverse chromatic aberration values across focal length and multiple images at one focal length; prints the mean values for each focal length. Run after Torsten's `calibrate.py` in the directory with the `.tca` files.
+
+## vig_focus_dist.py
+Reads Canon raws (CR2) from the current directory and sorts them into subdirectories by focus distance, for use with `calibrate.py`.
