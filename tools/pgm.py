@@ -29,7 +29,11 @@ def read_pgm(fspec):
         if magic != b'P5':
             raise RuntimeError('not a pgm file')
         skip_whitespace(f)
-        width = int(read_to_whitespace(f))
+        w = read_to_whitespace(f)
+        if w == '#':
+            skip_whitespace(f)
+            w = read_to_whitespace(f)
+        width = int(w)
         skip_whitespace(f)
         height = int(read_to_whitespace(f))
         skip_whitespace(f)
@@ -39,3 +43,31 @@ def read_pgm(fspec):
             raise RuntimeError('bad pgm format after maxval')
         return numpy.fromfile(f, dtype='>u1' if maxval < 256 else '>u2'
                 ).reshape(height, -1)
+
+def ws_delimited(s, start):
+    while s[start] in (b' ', b'\n', b'\t'):
+        start += 1
+    end = start
+    while s[end] not in (b' ', b'\n', b'\t'):
+        end += 1
+    return start, end
+
+def pgm_from_string(s):
+    if s[0:2] != b'P5':
+        raise RuntimeError('not a pgm file')
+    start = 2
+    start, end = ws_delimited(s, start)
+    if s[start:end] == '#':
+        start = end
+        start, end = ws_delimited(s, start)
+    width = int(s[start:end])
+    start = end
+    start, end = ws_delimited(s, end)
+    height = int(s[start:end])
+    start = end
+    start, end = ws_delimited(s, end)
+    maxval = int(s[start:end])
+    if not s[end] in (b' ', b'\n', b'\t'):
+        raise RuntimeError('bad pgm format after maxval')
+    return numpy.frombuffer(s, offset=end + 1, dtype='>u1'
+                            if maxval < 256 else '>u2').reshape(height, -1)
