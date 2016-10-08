@@ -41,11 +41,13 @@ for p in params:
         math.hypot(img.shape[0] / 2., img.shape[1] / 2.)
     img = img / (1 + params[p][0] * r ** 2 + params[p][1] * r ** 4 +
                  params[p][2] * r ** 6)
+    img[img > 65535] = 65535
+    img = numpy.require(img, dtype=numpy.uint16)
     outf = os.path.join('vignetting_' + d if d else 'vignetting',
                         '{0}_{1}_resid.pgm'.format(f, ap))
     with open(outf, 'wb') as f:
         f.write(b'P5\n')
         f.write(b'{0} {1} {2}\n'.format(img.shape[1], img.shape[0],
-                                      numpy.max(img)))
-        numpy.require(img, dtype=numpy.uint16).tofile(f)
+                                        numpy.max(img)))
+        img.tofile(f)
 
