@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """Get the residuals after removing the radial fit"""
 
+import math
 import os.path
 import subprocess
 import xml.etree.ElementTree
