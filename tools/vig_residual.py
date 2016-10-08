@@ -22,7 +22,7 @@ params = dict(((
     for c in root.iter(tag='vignetting')))
 for p in params:
     f, ap, d = p.split('_')
-    if d > 2.:
+    if float(d) > 2.:
         d = None
     rawf = os.path.join('vignetting_' + d if d else 'vignetting',
                         '{0}_{1}.CR2'.format(f, ap))
