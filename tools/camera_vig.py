@@ -54,9 +54,20 @@ def fit_preview(filename):
     plt.scatter(r, img, lw=0, s=1, marker='.')
     plt.plot(x, A * (1 + k1 * x ** 2 + k2 * x ** 4 + k3 * x ** 6), hold=True,
              c='r', label='Direct leastsq fit')
+    #Write this output
+    dirname, fname = os.path.split(filename)
+    focal = float(fname.split('_')[0])
+    ap = float(fname.split('_')[1][:-4])
+    with open('vignetting_frag.txt', 'a') as f:
+        f.write(('            <vignetting model="pa" focal="{focal:.0f}" '
+                 'aperture="{ap:.2g}" distance="{dist}" '
+                 'k1="{k1:.4f}" k2="{k2:.4f}" k3="{k3:.4f}" />\n')
+                .format(
+                    focal=focal, ap=ap,
+                    dist=dirname.split('_')[1] if '_' in dirname else '1000',
+                    k1=k1, k2=k2, k3=k3))
     #grab calibrate.py output
     if os.path.exists('lensfun.xml') and filename.startswith('vignetting'):
-        dirname, fname = os.path.split(filename)
         key = fname[:-4] + '_' + ('1000.00' if dirname == 'vignetting'
                                   else dirname.split('_')[1])
         tree = xml.etree.ElementTree.parse('lensfun.xml')
